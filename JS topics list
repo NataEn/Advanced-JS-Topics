@@ -7,3 +7,4 @@
 in current or “modern” browsers, also work in other browsers that do not have the support for that functionality built in.
 Polyfills are not part of the HTML5 standard and Polyfilling is not limited to Javascript.
 7) let vs var
+8) IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined.
