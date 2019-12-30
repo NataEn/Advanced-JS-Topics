@@ -1,0 +1,9 @@
+1) coercion
+2) threading
+3) scope
+4) hoisting
+5) array- an object that holds values (of any type) in numerically indexed positions instead of name/value pairs
+6) polifill-essentially the specific code (or plugin) that would allow you to have some specific functionality that you expect 
+in current or “modern” browsers, also work in other browsers that do not have the support for that functionality built in.
+Polyfills are not part of the HTML5 standard and Polyfilling is not limited to Javascript.
+7) let vs var
