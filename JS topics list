@@ -1,5 +1,5 @@
 1) coercion
-2) threading
+2) threading- defines how many 
 3) scope
 4) hoisting-an imaginary process for understanding how the JS engine compiles JS code
 5) array- an object that holds values (of any type) in numerically indexed positions instead of name/value pairs
@@ -8,3 +8,8 @@ in current or “modern” browsers, also work in other browsers that do not hav
 Polyfills are not part of the HTML5 standard and Polyfilling is not limited to Javascript.
 7) let vs var
 8) IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined.
+9) asyncronouse programming
+10) AJAX
+11) inheritance rules (vs low level languages)
+12) sla ? 
+13) lazyload ?
