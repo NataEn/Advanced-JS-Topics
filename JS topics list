@@ -14,3 +14,4 @@ Polyfills are not part of the HTML5 standard and Polyfilling is not limited to J
 12) sla ? 
 13) lazyload ?
 14) CORS Protocol -read more at : https://medium.com/@mattlag/es6-modules-getting-started-gotchas-2ad154f38e2e
+15) exports object for exporting total context of a js file
