@@ -73,10 +73,30 @@ l=1;
 console.log(l)
 >>1
 
+example 2: const holding an object can be modified
+
+const c=[1,2,3]; 
+c.push(4); 
+console.log(c)
+>> VM6256:1 (4) [1, 2, 3, 4]
+
+but:
+c=[1,2,3,4]
+>> Uncaught TypeError: Assignment to constant variable.
+
+null vs undefined
+- both represent an ampty value.
+null- set by the programmer
+undefiened- set automatically to mutable variables if not initialized
+typeof(undefiened)
+>> 'undefined'
+typeof(null)
+>> 'object'
+
 comparison operators == vs ===
 
-== compars the vaue
-=== compares the value and type 
+== compairs the vaue
+=== compaires the value and type 
 
 example 1:
  console.log('1'==1)
@@ -85,5 +105,87 @@ example 1:
  console.log('1'===1)
  >> false
  here, the engin doesn't convert anything, just compaires the two values 
+
+This, arrow functions and scopes
+
+const profile={
+firstName:'',
+lastName:'',
+setName: function(name){
+    let splitName=function(n){
+        let nameArray=n.split(' ')
+        this.firstName=nameArray[0]
+        this.lastName=nameArray[1]
+        }
+    splitName(name)
+    }
+}
+profile.setName('Nina Lue') (here, the 'this' in splitName function, reffers to the window object, because the function's setName context is that of where it was invocked...)
+console.log(firstName)
+>>Nina
+console.log(window.firstName)
+>>Nina
+console.log(profile.firstName)
+>>  (-> '', returns an empty string)
+
+example 2: changing splitName (inner function) to an arrow function
+
+const profile={
+firstName:'',
+lastName:'',
+setName: function(name){
+    let splitName=(n)=>{
+        let nameArray=n.split(' ')
+        this.firstName=nameArray[0]
+        this.lastName=nameArray[1]
+        }
+    splitName(name)
+    }
+}
+profile.setName('Nina Lue') (here, the 'this' in splitName function, reffers to the window object, because the function's setName context is that of where it was invocked...)
+console.log(firstName)
+>>VM385:1 Uncaught ReferenceError: firstName is not defined ('this' reffers to the profile object)
+console.log(profile.firstName)
+>> Nina
+
+example 3: changing setName (outer function) to an arrow function
+
+const profile={
+firstName:'',
+lastName:'',
+setName:(name)=>{
+    let splitName=function(n){
+        let nameArray=n.split(' ')
+        this.firstName=nameArray[0]
+        this.lastName=nameArray[1]
+        }
+    splitName(name)
+    }
+}
+profile.setName('Nina Lue') (here, the 'this' in splitName function, reffers to the window object, because the function's setName context is that of where it was invocked...)
+console.log(firstName)
+>>Nina
+console.log(profile.firstName)
+>>  (-> '', returns an empty string)
+
+example 4: changing both setName and splitName to an arrow function
+
+const profile={
+firstName:'',
+lastName:'',
+setName:(name)=>{
+    let splitName=(n)=>{
+        let nameArray=n.split(' ')
+        this.firstName=nameArray[0]
+        this.lastName=nameArray[1]
+        }
+    splitName(name)
+    }
+}
+profile.setName('Nina Lue') 
+console.log(firstName)
+>>Nina
+console.log(profile.firstName)
+>>  (-> '', returns an empty string)
 
 
