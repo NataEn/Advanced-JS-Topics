@@ -19,6 +19,7 @@ Polyfills are not part of the HTML5 standard and Polyfilling is not limited to J
 17) stack in JS - all those functions that were called till the error occured
 18) the event loop of the browser executing events in an async manner
 19) continue vs break
+20) es6 vs prev versions
 
 
 
