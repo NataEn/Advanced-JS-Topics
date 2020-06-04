@@ -309,6 +309,10 @@ a.forEach( function(v) {
 
 # JavaScrypt Concepts
 
+## scope vs context
+
+Scope pertains to the visibility of variables and in contrast, context refers to the object to which a method belongs (which can be changed by using call or apply).
+
 ## This, arrow functions and scopes
 
 const profile={
@@ -486,3 +490,21 @@ console.log(this)
 //in client will print window
 //in server will print {}
 ```
+
+### find out the identity of a variable
+
+instead of using "typeof" that will return 'Object' for null, [],{}, Map, Set just use:
+
+```
+let a=[]
+a.constructor
+//will return Array
+
+let b={}
+b.constructor
+//will return Object
+new Map().constructor // return Map
+function(){}.constructor //return Function
+```
+
+and so on ...
