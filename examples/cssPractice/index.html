@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./index.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="main">This is my maine div</div>
+    <form action="" method="GET" class="myForm">
+      <div class="name">
+        <label for="name">your name:</label>
+        <input type="text" name="name" id="name" required />
+      </div>
+      <div class="email">
+        <lable for="email"> your email:</lable>
+        <input type="email" name="email" id="email" required />
+      </div>
+      <div class="fruit-choice">
+        <lable for="fruit">Choose a fruit</lable>
+        <input list="fruit-types" name="fruit-choice" id="fruit-choice" />
+        <datalist id="fruit-types">
+          <option value="banana">ba</option>
+          <option value="apple">ap</option>
+          <option value="orange">or</option>
+          <option value="melon">me</option>
+          <option value="lemon">lem</option>
+        </datalist>
+      </div>
+      <input type="submit" value="SUBMIT" />
+    </form>
+    <form oninput="result.value=parseInt(a.value)*parseInt(n.value)">
+      <input type="range" id="a" name="a" value="10" />
+      <span>+</span>
+      <input type="number" id="n" name="n" value="5" />
+      <span>=</span>
+      <output name="result" for="a n">15</output>
+    </form>
+    <picture>
+      <source srcset="1.jpg, 2.jpg 2x" media="(max-width: 360px)" />
+      <!-- <source srcset="6.jpg, 5.jpg 2x" media="(min-width: 1920px)" /> -->
+      <img src="2.jpg" srcset="4.jpg 2x" alt="your image" />
+    </picture>
+  </body>
+</html>
