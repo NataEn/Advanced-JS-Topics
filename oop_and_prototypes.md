@@ -13,6 +13,7 @@ function Person(firstName,lastName){
  }
 ```
 
+_this is how you create the class Person_
 calling the function:
 const dude=Person("Jon","Mack")
 
@@ -34,7 +35,7 @@ const dude={};
 Person.call(dude,"Jon","Mack")
 ```
 
-calling a function on an object (with the call function) isn't quite the same as what the new key word does but similar things are being done when creating/defining the object.
+calling a function on an object (with the Class.call function) isn't quite the same as what the new key word does but similar things are being done when creating/defining the object.
 
 ## Adding functions to our new Object
 
@@ -51,9 +52,9 @@ const dude=new Person("dd","ss")
 dude.fullName();
 ```
 
-But, in this method, we have the word "this" reffering to the instance the function is called upon. And. as this function is created/copied on every new instance creation, we can just put it on the **prototype of the function constructor**:
+But, in this method, we have the word "this" reffering to the instance the function is called upon. And, as this function is created/copied on every new instance creation, we can just put it on the **prototype of the function constructor** (the function prototype):
 The function "Person", has a "Prototype" (and a "**proto**") attribute that is pointing to Persons prototype.
-When we use the "new" key word in `new Person("first","last")` the new instance will point to that same prorotype with its "**proto**"
+When we use the "new" key word in `new Person("first","last")` the new instance will point to that same prorotype with its "\***\*proto\*\***"
 attribute.
 Thus, if we add:
 
@@ -61,6 +62,7 @@ Thus, if we add:
 Person.prototype.fullName=function(){ return `${this.firstName} ${this.lastName}`}
 ```
 
+_note: functions have the **prototype** property, but their instances have the \***\*proto\*\*** property_
 Than every new instance of Person will point to that same function, that will have "this" reffering to the instance it is called upon:
 
 ```
