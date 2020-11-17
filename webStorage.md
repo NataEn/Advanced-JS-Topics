@@ -9,3 +9,5 @@ Allows to store data locally in the user's browser, Web pages can only access da
 | Expires            | never         | on tab close    | manually set       |
 | Storage location   | Browser only  | Browser only    | Browser and server |
 | sent with requests | no            | no              | yes                |
+
+All storage types can be seen in the developers tool, under Application tab
