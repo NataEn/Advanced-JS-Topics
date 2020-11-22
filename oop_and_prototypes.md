@@ -120,15 +120,36 @@ These functions, defined in the Class's prototype will be **publicly** available
 > See taxonomic classification order on https://a-z-animals.com/reference/animal-classification/
 > order (one of):Agnatha (jaw-less fish), Chrondrichtyes (cartilaginous fish), Osteichthyes (bony fish), Amphibia (amphibians), Reptilia (reptiles), Aves (birds), Mammalia (mammals)
 
+Applying the `Animal.call()` function withing the Family constructure function is similar to calling the `super()` function in other languages.
+However this does not link the two classes together, just simply calls the `Animal` constructor function from the `Family` constructor function.
+
 ```
-function Animal(animal_name,order){
-    this.animal_name=animal_name;
+function Order(taxonomic_class,order){
+    this.taxonomic_class=taxonomic_class;
     this.order=order;
 }
-function Family(animal_name,order,family_name,habitat,limbs){
-    Animal.call(this,animal_name,order);
+Order.prototype.taxonomic_classification=function(){
+    return `class: $(taxonomic_class), order: $(this.order)`;
+}
+
+function Family(taxonomic_class, order,family,habitat,limbs){
+    Animal.call(this,taxonomic_class,order);
+    this.family=family;
+    this.habitat=habitate;
+    this.limbs=limbs;
+}
+```
+
+To link the two together we need to define `Order` as the **prototype** of `Family`
+
+```
+function Family(taxonomic_class,order,family_name,habitat,limbs){
+    Animal.call(this,taxonomic_class,order);
     this.family_name=family_name;
     this.habitat=habitate;
     this.limbs=limbs;
+}
+Family.prototype.taxonomic_classification=function(){
+    return `class: $(taxonomic_class), order: $(this.order), family: $(this.family)`
 }
 ```
