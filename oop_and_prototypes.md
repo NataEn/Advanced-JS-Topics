@@ -48,13 +48,13 @@ this.lastName=lastName;
 this.fullName=function(){ return `${this.firstName} ${this.lastName}`};};
 }
 
-const dude=new Person("dd","ss")
+const dude=new Person("Alice","Black")
 dude.fullName();
 ```
 
-But, in this method, we have the word "this" reffering to the instance the function is called upon. And, as this function is created/copied on every new instance creation, we can just put it on the **prototype of the function constructor** (the function prototype):
-The function "Person", has a "Prototype" (and a "**proto**") attribute that is pointing to Persons prototype.
-When we use the "new" key word in `new Person("first","last")` the new instance will point to that same prorotype with its "\***\*proto\*\***"
+But, in this method, we have the word "this" reffering to the instance the function is called upon. And, as this function is created/copied on every new instance creation, we can just put it on the **_prototype_ of the function constructor** (the function prototype):
+The function "Person", has a "Prototype" (and a **_proto_**) attribute that is pointing to Persons prototype.
+When we use the "new" key word in `new Person("first","last")` the new instance will point to that same prorotype with its **_proto_**
 attribute.
 Thus, if we add:
 
@@ -62,14 +62,15 @@ Thus, if we add:
 Person.prototype.fullName=function(){ return `${this.firstName} ${this.lastName}`}
 ```
 
-_note: functions have the **prototype** property, but their instances have the \***\*proto\*\*** property_
-Than every new instance of Person will point to that same function, that will have "this" reffering to the instance it is called upon:
+> functions have the **prototype** property, but their instances have the **proto** property
+> Than every new instance of Person will point to that same function, that will have "this" reffering to the instance it is called upon:
 
 ```
 dude.fullName();
 ```
 
-However!
+## OOP Closure
+
 If we would like to define a function reffering to a **private** attributes, we can define the function like so:
 
 ```
@@ -80,5 +81,54 @@ this.fullName=function(){ return `${firstName} ${lastName}`};};
 }
 ```
 
-Here, when the function "fullName" is created, it has a closure, with "firstName" and "lastName" variables pointing to those values
+Here, when the function "fullName" is created (when an instance is created), it has a closure, with "firstName" and "lastName" variables pointing to those values
 recieved when the instance is created.
+
+```
+const dudn={};
+Person.call(dude,"Boby","Brown");
+console.log(dude);
+console.log(dude.full_name());
+dude.first_name="aaa";
+console.log(dude.full_name());
+console.log(dude.first_name);
+```
+
+will return in the console:
+
+```
+{first_name: "Boby", last_name: "Brown", full_name: ƒ}
+Boby Brown
+Boby Brown
+aaa
+```
+
+### Memory saving tips
+
+1. each time we create a new Person with the `new` key word, all functions defined in the Person class will be copied to the new instance, creating many copies of those functions. all working well, but! as the new instance points to the prototype of Person, why not add those functions to that same prototype:
+
+```
+Person.prototype.full_name=function(){
+    return this.first_name+" "+this.last_name;
+}
+```
+
+These functions, defined in the Class's prototype will be **publicly** available for all instances created from it.
+
+## Psudo-classicle inharitance
+
+> See taxonomic classification order on https://a-z-animals.com/reference/animal-classification/
+> order (one of):Agnatha (jaw-less fish), Chrondrichtyes (cartilaginous fish), Osteichthyes (bony fish), Amphibia (amphibians), Reptilia (reptiles), Aves (birds), Mammalia (mammals)
+
+```
+function Animal(animal_name,order){
+    this.animal_name=animal_name;
+    this.order=order;
+}
+function Family(animal_name,order,family_name,habitat,limbs){
+    Animal.call(this,animal_name,order);
+    this.family_name=family_name;
+    this.habitat=habitate;
+    this.limbs=limbs;
+}
+```
