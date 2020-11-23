@@ -264,3 +264,38 @@ Promise.all(promises).then(values=>console.log(values);)
 ```
 
 We woud like to execute all the promises at the same time. So after they are all done their values are returned as an array to the "then".
+
+## Async-Await => ES8
+
+There is a difference between async-await and promises.
+We first define a function that returns a resolved promise, that
+
+```
+const doAsyncTask=()=>Promise.resolve("done");
+doAsyncTask().then(val=>console.log(val));
+console.log("hello");
+```
+
+first the `console.log("hello");` gets caolled first then `doAsyncTask`, it gets resolved then "done" is passed so the `console.log(val)` is executed.
+
+When we are using an "async-await" we don't need to use a "then" handeler. The code after the "await" declaration will run only after the "awiat" returns.
+
+```
+const doAsyncTask=()=>Promise.resolve("done");
+async function Dude()=>{
+let value= await doAsyncTask();
+console.log(value);
+}
+Dude();
+```
+
+Alturnativly we can create an IFFI:
+
+```
+(async function Dude()=>{
+let value= await doAsyncTask();
+console.log(value);
+})()
+```
+
+==> Look ahaed fot **top level await** for modules in nodejs so whole files can be run asynchronously in the future
