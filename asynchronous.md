@@ -329,3 +329,67 @@ Promise {<fulfilled>: undefined}
 ```
 
 This is how `async-await` allows you to turn between non-blocking code (regular promise) and blocking code.
+
+Async functions behave like promises, so we can attach a `then` handler to them:
+
+```
+let asyncFunction=async function(){
+    let value=await doAsynkTask();
+    console.log(value);
+    console.log("2");
+    return "3"; //whatever we return is like resolve
+};
+asyncFunction().then(val=>console.log(val));
+VM2408:3 done
+VM2408:4 2
+VM2533:1 3
+Promise {<fulfilled>: undefined}
+```
+
+**However** if you just write functions with asyc and executing them as they are, they will run as regular functions (they return a promise but run regularly), this is just awaste of resources:
+
+```
+async function printLine1(){
+    console.log("1");
+}
+async function printLine1(){
+    console.log("1");
+}
+async function main(){
+    printLine1();
+    printLine2();
+}
+main();
+console.log("finished")
+```
+
+### Catching Errors
+
+In promises we used the `then().catch().finally()`
+with `async-await` we can use the `try-catch` semantics:
+
+```
+const doAsyncTask=()=>Promise.reject("error");
+const asyncFunction=async function(){
+    try{
+
+const value= await  doAsyncTask();
+    }catch(error){
+        console.error("Moo: ",error);
+        return;
+    }
+}
+asyncFunction();
+VM4477:7 Moo:  error
+asyncFunction @ VM4477:7
+async function (async)
+asyncFunction @ VM4477:5
+(anonymous) @ VM4477:11
+Promise {<fulfilled>: undefined}
+```
+
+When the promise rejected, an error is thrown so the value gets passed to the `catch()`
+
+Though blocking code is easier to read and reason but it can take mutch more time to happen, since we are waiting for the promise to resolve.
+
+`Async-await` may be bad for performance.
