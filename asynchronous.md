@@ -289,13 +289,43 @@ console.log(value);
 Dude();
 ```
 
-Alturnativly we can create an IFFI:
+Alturnativly we can create an IIF:
 
 ```
-(async function Dude()=>{
+(async function Dude(){
 let value= await doAsyncTask();
 console.log(value);
 })()
 ```
 
-==> Look ahaed fot **top level await** for modules in nodejs so whole files can be run asynchronously in the future
+==> Look ahead for **top level await** for modules in nodejs so whole files can be run asynchronously in the future.
+
+We **can** skip the `await`, then the function will run as a regular function:
+
+```
+const doAsyncTask=()=> Promise.resolve("done");
+
+(async function(){doAsyncTask().then((val)=>console.log(val)); console.log("done2")})()
+```
+
+will print out:
+
+```
+done2
+done
+Promise {<fulfilled>: undefined}
+```
+
+Otherwise:
+
+```
+(async function Dude(){
+let value= await doAsyncTask().then((val)=>{console.log(val); return val;});
+console.log(value+2);
+})()
+VM1938:2 done
+VM1938:3 done2
+Promise {<fulfilled>: undefined}
+```
+
+This is how `async-await` allows you to turn between non-blocking code (regular promise) and blocking code.
