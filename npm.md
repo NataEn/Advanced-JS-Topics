@@ -15,9 +15,13 @@
 
 NPX is an npm package runner: in one command it downloads, installs and runs a package for you. These packages are not installed globally.
 
-#### contribute
+#### Tribute
 
 Data taken from:
 
 1. [https://www.geeksforgeeks.org/what-are-the-differences-between-npm-and-npx/#:~:text=Npm%20is%20a%20tool%20that,pollution%20for%20the%20long%20term.]
 2. [https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner]
+
+## npm logger module: Morgan
+
+Allows a nicer way to log http requests in the console.
