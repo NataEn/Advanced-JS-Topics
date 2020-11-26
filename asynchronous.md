@@ -352,8 +352,8 @@ Promise {<fulfilled>: undefined}
 async function printLine1(){
     console.log("1");
 }
-async function printLine1(){
-    console.log("1");
+async function printLine2(){
+    console.log("2");
 }
 async function main(){
     printLine1();
@@ -361,6 +361,10 @@ async function main(){
 }
 main();
 console.log("finished")
+VM5436:2 1
+VM5436:5 2
+VM5436:12 finished
+undefined
 ```
 
 ### Catching Errors
