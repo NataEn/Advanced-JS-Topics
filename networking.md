@@ -131,3 +131,24 @@ JQuary, for instance, uses this vary same technique.
 
 In the Network part of the browser, under XHR tab, where you can see the AJAX requests and responses, there will be nothing, but under the JS tab there will be the file, as it is requested as a script, or in the ALL tab.
 The trick is loading a JS file and not making an API request
+
+### CORS between Web-Sockets
+
+When using web-sockets to communicate between a client and a server pay attention that the web-socket itself may return a CORS error, already in the first polling request to establish the dual-connection.
+
+To handle that:
+
+```
+const socketio = require("socket.io");
+
+const io = socketio(server, {
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"],
+    },
+  });
+```
+
+#### Read on thins section
+
+1. [https://mashhurs.wordpress.com/2016/09/30/polling-vs-websocket-transport/#:~:text=What%20Polling%20transport%20actually%20is,recv%20anytime%20to%2Ffrom%20Client.]
