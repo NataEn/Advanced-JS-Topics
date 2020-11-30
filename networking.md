@@ -152,3 +152,6 @@ const io = socketio(server, {
 #### Read on thins section
 
 1. [https://mashhurs.wordpress.com/2016/09/30/polling-vs-websocket-transport/#:~:text=What%20Polling%20transport%20actually%20is,recv%20anytime%20to%2Ffrom%20Client.]
+2. [https://stackoverflow.com/questions/4042691/web-sockets-make-ajax-cors-obsolete]
+3. [https://stackoverflow.com/questions/59679427/cors-validation-for-web-socket]
+4. [https://stackoverflow.com/questions/32248198/handling-cors-in-node-js]
