@@ -150,3 +150,178 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 ```
 
 Thus to be sure in what we are doing we should use "replaceOne"...
+
+## Cursor Object
+
+We created a new collection called passengers with allot of documents inside it. When we want to see all the documents entered with the `find()` command we can see that not all of them are printed but a final line is printed with "type "it" for more"
+
+```
+ db.passengers.find().pretty()
+{
+        "_id" : ObjectId("5fc90256f541cd9b3dd02565"),
+        "name" : "Max Schwarzmueller",
+        "age" : 29
+}
+{
+        "_id" : ObjectId("5fc90256f541cd9b3dd02566"),
+        "name" : "Manu Lorenz",
+        "age" : 30
+}
+.....
+{
+        "_id" : ObjectId("5fc90256f541cd9b3dd02578"),
+        "name" : "Albert Twostone",
+        "age" : 68
+}
+Type "it" for more
+> it
+{
+        "_id" : ObjectId("5fc90256f541cd9b3dd02579"),
+        "name" : "Gordon Black",
+        "age" : 38
+}
+{
+        "_id" : ObjectId("5fc90278f541cd9b3dd0257a"),
+        "name" : "Max Schwarzmueller",
+        "age" : 29
+}....
+```
+
+this will continue till all the documents are printed.
+This is because the "find()" give us a "cursor" object not the entire collection that can be huge!
+A cursor object is an object with allot of metadata behind it that allos us to cycle through the results that was found. This is why we can only use the "pretty()" command on "find()" but not on "findOne()" that only returns one thins and not an amount of them.
+
+## Projection
+
+This is a practice in which you filter the data you query on the mongoDb server so the data you send to your backend server or front end server is smaller and this will not impact your bandwidth.
+say we want to get all the documents but only with the "name" field:
+
+```
+ db.passengers.find({},{name:1}).pretty()
+{
+        "_id" : ObjectId("5fc90256f541cd9b3dd02565"),
+        "name" : "Max Schwarzmueller"
+}
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02566"), "name" : "Manu Lorenz" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02567"), "name" : "Chris Hayton" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02568"), "name" : "Sandeep Kumar" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02569"), "name" : "Maria Jones" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd0256a"), "name" : "Alexandra Maier" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd0256b"), "name" : "Dr. Phil Evans" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd0256c"), "name" : "Sandra Brugge" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd0256d"), "name" : "Elisabeth Mayr" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd0256e"), "name" : "Frank Cube" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd0256f"), "name" : "Karandeep Alun" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02570"), "name" : "Michaela Drayer" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02571"), "name" : "Bernd Hoftstadt" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02572"), "name" : "Scott Tolib" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02573"), "name" : "Freddy Melver" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02574"), "name" : "Alexis Bohed" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02575"), "name" : "Melanie Palace" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02576"), "name" : "Armin Glutch" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02577"), "name" : "Klaus Arber" }
+{ "_id" : ObjectId("5fc90256f541cd9b3dd02578"), "name" : "Albert Twostone" }
+Type "it" for more
+```
+
+Here the first param in find() was an empty documents, so that we will get all, the second one is for projection, get the name, 1- for all the names that are in the documents.
+Since the id is printed by default it is also included, to exclude it:
+
+```
+ db.passengers.find({},{name:1,_id:0}).pretty()
+{ "name" : "Max Schwarzmueller" }
+{ "name" : "Manu Lorenz" }
+{ "name" : "Chris Hayton" }
+{ "name" : "Sandeep Kumar" }
+{ "name" : "Maria Jones" }
+{ "name" : "Alexandra Maier" }
+{ "name" : "Dr. Phil Evans" }
+{ "name" : "Sandra Brugge" }
+{ "name" : "Elisabeth Mayr" }
+{ "name" : "Frank Cube" }
+{ "name" : "Karandeep Alun" }
+{ "name" : "Michaela Drayer" }
+{ "name" : "Bernd Hoftstadt" }
+{ "name" : "Scott Tolib" }
+{ "name" : "Freddy Melver" }
+{ "name" : "Alexis Bohed" }
+{ "name" : "Melanie Palace" }
+{ "name" : "Armin Glutch" }
+{ "name" : "Klaus Arber" }
+{ "name" : "Albert Twostone" }
+Type "it" for more
+```
+
+## Embeded Documents
+
+These are simply nested documents inside existing documents.
+
+## Working with Nested Arrays and Documents
+
+### Nested Arrays
+
+```
+ db.passengers.updateOne({name:"Klaus Arber"},{$set:{hobbies:["riding","coocking","swiming"]}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.passengers.findOne({name:"Klaus Arber"}).hobbies
+[ "riding", "coocking", "swiming" ]
+```
+
+Mongo is smart enough to search documents according to one element in an array and fetch the whole document:
+
+```
+db.passengers.find({hobbies:"coocking"}).pretty()
+{
+        "_id" : ObjectId("5fc90256f541cd9b3dd02577"),
+        "name" : "Klaus Arber",
+        "age" : 53,
+        "hobbies" : [
+                "riding",
+                "coocking",
+                "swiming"
+        ]
+}
+{
+        "_id" : ObjectId("5fc90256f541cd9b3dd02578"),
+        "name" : "Albert Twostone",
+        "age" : 68,
+        "hobbies" : [
+                "drawing",
+                "coocking"
+        ]
+}
+```
+
+### Nested documets
+
+Adding nested documents:
+
+```
+ db.flightsData.updateMany({},{$set:{status:{price:23,available:true,hours:10}}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 0 }
+> db.flightsData.find({}).pretty()
+{
+        "_id" : ObjectId("5fc8f429f541cd9b3dd02563"),
+        "age" : "rrr",
+        "status" : {
+                "price" : 23,
+                "available" : true,
+                "hours" : 10
+        }
+}
+{
+        "_id" : ObjectId("5fc8f429f541cd9b3dd02564"),
+        "age" : 35,
+        "status" : {
+                "price" : 23,
+                "available" : true,
+                "hours" : 10
+        }
+}
+```
+
+searching according to a nested document's key:
+
+```
+
+```
