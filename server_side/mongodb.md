@@ -320,8 +320,47 @@ Adding nested documents:
 }
 ```
 
-searching according to a nested document's key:
+We use dot notation and "" to search according to a nested document's key:
+
+```
+db.flightsData.find({"status.price":23}).pretty()
+{
+        "_id" : ObjectId("5fc8f429f541cd9b3dd02563"),
+        "age" : "rrr",
+        "status" : {
+                "price" : 23,
+                "available" : true,
+                "hours" : 10
+        }
+}
+{
+        "_id" : ObjectId("5fc8f429f541cd9b3dd02564"),
+        "age" : 35,
+        "status" : {
+                "price" : 23,
+                "available" : true,
+                "hours" : 10
+        }
+}
 
 ```
 
-```
+## Schemas and Relations: Correctly store the data in MongoDb
+
+MongoDb does not enforce any schemas. The documents can look differently in one collection. How ever we should keep in mind to have some logical order:
+for instance a "details" key may or may not be appear in all the documents. If we wish for all to have the same keys, we just set the "details" to null.
+
+## Data Types
+
+The whole documents should be max 65MB of size
+Text- there are no limitations
+Numbers:
+
+1. integers: 32bit long (longer than that will be changes)
+2. NumberLong: 64bit
+3. NumberDecimal
+
+ObjectId- automatically generated, with the corresponding order of documents' creation
+
+ISOData-"2018-09-10"
+Timestamp-always unique
