@@ -1,4 +1,10 @@
-## CSS
+# CSS
+
+## Debugging tools
+
+Firefox has good developers tools
+
+## CSS Grid
 
 1. CSS selector specificity
 

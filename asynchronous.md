@@ -143,7 +143,7 @@ doAsyncWork().then(
     ()=>console.log("Task complete!"),()=>(console.log("Task Errored!")));
 ```
 
-Now the Promis is rejected, the "Task Errored!" printed out to the console.
+Now the Promise is rejected, the "Task Error!" printed out to the console.
 
 However, the `resolve` and `reject` functions can be passed prameters that are passed along to the success handeler.
 
@@ -346,7 +346,7 @@ VM2533:1 3
 Promise {<fulfilled>: undefined}
 ```
 
-**However** if you just write functions with asyc and executing them as they are, they will run as regular functions (they return a promise but run regularly), this is just awaste of resources:
+**However** if you just write functions with asyc and executing them as they are, they will run as regular functions (they return a promise but run regularly), this is just a waste of resources:
 
 ```
 async function printLine1(){
