@@ -1,5 +1,23 @@
 # Arrays
 
+## Creating an array
+
+1. array literal: `const a=[]`
+2. array with empty values (undefined): `new Array(10) /* returns:*/ [ <10 empty items> ]`
+3. forcing creation of undefined values/holes:
+
+```
+const a=[]
+a[20]=10
+console.log(a)
+//returns:
+[ <20 empty items>, 10 ]
+```
+
+**further reading**:
+
+a. be careful when creating arrays: https://2ality.com/2018/12/creating-arrays.html
+
 ## Array Destructuring
 
 Get the second param in an array
@@ -20,6 +38,35 @@ Get the rest params from the secons one:
 [,...t]=[1,2,3]//t=[2,3]
 ```
 
+## Using `for ...in` loop may not iterate in the array order--???
+
+The `for ..in` loop is specified for iterating an object: `for (let prop in obj)`
+
+```
+function iterArray(arr) {
+  for (let item in arr) {
+    console.log(item);
+  }
+}
+iterArray([1, 2, 3, 4, 5]);
+//from what I have seen it does run it in order....
+
+```
+
+## Using `for ...of` loop may to iterate any iterable var
+
+The `for ..in` loop is specified for getting values: `for (let val in iterable)`
+
+```
+function iterIterable(iterable) {
+  for (let val in iterable) {
+    console.log(item);
+  }
+}
+iterIterable([1, 2, 3, 4, 5]);
+
+```
+
 ## Reverse an Array
 
 `const a=[1,2,3,4]`
@@ -29,12 +76,13 @@ Get the rest params from the secons one:
 3. Creating a new array: no es6 syntax
 
 ```
-function reverseArray(arr) {
-  return arr.reduce(function (acc, item) {
-    acc.unshift(item);
-    return acc;
-  }, []);
+function iterIterable(iterable) {
+  for (let val in iterable) {
+    console.log(val);
+  }
 }
+iterIterable([1, 2, 3, 4, 5]);
+iterIterable({ a: 1, b: 2, c: "3" });
 ```
 
 ### Exercises

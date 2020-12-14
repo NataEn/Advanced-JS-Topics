@@ -5,7 +5,7 @@
 let array = [2, 5, 1, 4, 9, 6, 3, 7];
 let max = 9;
 let min = 1;
-findMissingNumber(arrayOfIntegers, max, min); //should return 8
+//findMissingNumber(arrayOfIntegers, max, min); //should return 8
 
 function findMissingNumber(arrayOfIntegers, upperBound, lowerBound) {
   // Iterate through array to find the sum of the numbers
@@ -20,10 +20,28 @@ function findMissingNumber(arrayOfIntegers, upperBound, lowerBound) {
   let missingNum = sumOfIntegers - sum;
   return missingNum;
 }
+//Reverse an array with reduce
 function reverseArray(arr) {
-  arr.reduce(function (acc, item) {
+  return arr.reduce(function (acc, item) {
     acc.unshift(item);
     return acc;
   }, []);
 }
-console.log(reverseArray([1, 4, 7]));
+//console.log(reverseArray([1, 4, 7]));
+
+// for..in loop will iterate over array not in its order
+
+function iterArray(arr) {
+  for (let item in arr) {
+    console.log(item);
+  }
+}
+//iterArray([1, 2, 3, 4, 5]);
+
+function iterIterable(iterable) {
+  for (let val in iterable) {
+    console.log(val);
+  }
+}
+iterIterable([1, 2, 3, 4, 5]);
+iterIterable({ a: 1, b: 2, c: "3" });
