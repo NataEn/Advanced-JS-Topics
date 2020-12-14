@@ -20,3 +20,10 @@ function findMissingNumber(arrayOfIntegers, upperBound, lowerBound) {
   let missingNum = sumOfIntegers - sum;
   return missingNum;
 }
+function reverseArray(arr) {
+  arr.reduce(function (acc, item) {
+    acc.unshift(item);
+    return acc;
+  }, []);
+}
+console.log(reverseArray([1, 4, 7]));
