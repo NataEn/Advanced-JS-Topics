@@ -7,7 +7,30 @@
    here the variables (a and b) must match the keys that are destructed.
    so here:
    `{f,x}={a:"hi",b:123}` f and x will be undefined.
+3. When key name is the same as the value name we can supply it once:
+   ```
+   const c=3,s=4, a={c,s}
+   console.log(a) //returns: { c: 3, s: 4 }
+   ```
+   4. Methods in objects can be defined without the 'function' key-word:
+   ```
+   const c=3,s=4, a={c,s,method(){console.log('obj method')}}
+   a.method() //prints: obj method
+   ```
+   5. Object keys can be a result of calculation:
+   ```
+   const c=3,s=4
+   const a={c,s,method(){console.log('obj method')},
+   [c+s]:'result'}
+   Object.keys(a) //returns: [ '7', 'c', 's', 'method' ] pay attention that they are not ordered
+   ```
+   6. Combining two objects to one without duplicates:
+   ```
+   const composedObj=Object.assign({},{a:1,b:45,v:'val'},{a:56,f:76})//returns { a: 56, b: 45, v: 'val', f: 76 }
+   ```
+   as seen the key-value pairs of the third argument are overriding similar keys in the second argument.
 
+```
 ## Get the type of a variable
 
 Rather than using typof operator, it is a good idea to use the Object.constructor.name property that will return the specific name of the variable constructor.
@@ -17,10 +40,12 @@ Rather than using typof operator, it is a good idea to use the Object.constructo
 Here, the `new` keyword is used with a function constructor to generate an instance of a pseudo-class.
 
 ```
+
 function Person(firstName,lastName){
- this.firstName=firstName;
- this.lastName=lastName;
- }
+this.firstName=firstName;
+this.lastName=lastName;
+}
+
 ```
 
 This is how you create the pseudo-class Person:
@@ -35,14 +60,18 @@ To create an actuall new object with this function we can do one of:
 1.  use the "new" key word:
 
 ```
+
 const dude=new Person("Jon","Mack")
+
 ```
 
 2.  create a new object (dude) and call the function on it (the "this" is set to dude):
 
 ```
+
 const dude={};
 Person.call(dude,"Jon","Mack")
+
 ```
 
 calling a function on an object (with the Class.call function) isn't quite the same as what the new key word does but similar things are being done when creating/defining the object.
@@ -52,6 +81,7 @@ calling a function on an object (with the Class.call function) isn't quite the s
 One way is to create a const that holds the function in it, in the constructor:
 
 ```
+
 function Person(firstName,lastName){
 this.firstName=firstName;
 this.lastName=lastName;
@@ -60,6 +90,7 @@ this.fullName=function(){ return `${this.firstName} ${this.lastName}`};};
 
 const dude=new Person("Alice","Black")
 dude.fullName();
+
 ```
 
 But, in this method, we have the word "this" reffering to the instance the function is called upon. And, as this function is created/copied on every new instance creation, we can just put it on the **_prototype_ of the function constructor** (the function prototype):
@@ -69,14 +100,18 @@ attribute.
 Thus, if we add:
 
 ```
+
 Person.prototype.fullName=function(){ return `${this.firstName} ${this.lastName}`}
+
 ```
 
 > functions have the **prototype** property, but their instances have the **proto** property
 > Than every new instance of Person will point to that same function, that will have "this" reffering to the instance it is called upon:
 
 ```
+
 dude.fullName();
+
 ```
 
 ## OOP Closure
@@ -84,17 +119,20 @@ dude.fullName();
 If we would like to define a function reffering to a **private** attributes, we can define the function like so:
 
 ```
+
 function Person(firstName,lastName){
 this.firstName=firstName;
 this.lastName=lastName;
 this.fullName=function(){ return `${firstName} ${lastName}`};};
 }
+
 ```
 
 Here, when the function "fullName" is created (when an instance is created), it has a closure, with "firstName" and "lastName" variables pointing to those values
 recieved when the instance is created.
 
 ```
+
 const dudn={};
 Person.call(dude,"Boby","Brown");
 console.log(dude);
@@ -102,15 +140,18 @@ console.log(dude.full_name());
 dude.first_name="aaa";
 console.log(dude.full_name());
 console.log(dude.first_name);
+
 ```
 
 will return in the console:
 
 ```
+
 {first_name: "Boby", last_name: "Brown", full_name: ƒ}
 Boby Brown
 Boby Brown
 aaa
+
 ```
 
 The `fullName` function is a closure, it refers to the kind argument passed into the function constructor (and not this.fullName).
@@ -120,9 +161,11 @@ The `fullName` function is a closure, it refers to the kind argument passed into
 1. each time we create a new Person with the `new` key word, all functions defined in the Person class will be copied to the new instance, creating many copies of those functions. all working well, but! as the new instance points to the prototype of Person, why not add those functions to that same prototype:
 
 ```
+
 Person.prototype.full_name=function(){
-    return this.first_name+" "+this.last_name;
+return this.first_name+" "+this.last_name;
 }
+
 ```
 
 These functions, defined in the Class's prototype will be **publicly** available for all instances created from it.
@@ -135,32 +178,38 @@ Applying the `Person.call()` function withing the Person constructure function i
 However this does not link the two classes together, just simply calls the `Profession` constructor function from the `Person` constructor function.
 
 ```
+
 function Person(first_name,last_name){
-    this.first_name=first_name;
-    this.last_name=last_name;
+this.first_name=first_name;
+this.last_name=last_name;
 }
 Person.prototype.full_name=function(){
-    return `$(this.first_name) $(this.last_name)`;
+return `$(this.first_name) $(this.last_name)`;
 }
 
 function Professional(first_name,last_name,honorific){
-    Person.call(this,first_name,last_name);
-    this.honorific=honorific;
+Person.call(this,first_name,last_name);
+this.honorific=honorific;
 }
+
 ```
 
 We can also add a `professional_name` property to Professional:
 
 ```
+
 Professional.prototype.professional_name=function(){
-    return `$(this.honorific) $(this.first_name) $(this.last_name)`
+return `$(this.honorific) $(this.first_name) $(this.last_name)`
 }
+
 ```
 
 But, to link the two constructors together we need to define `Person` as the **prototype** of `Professional`
 
 ```
+
 Profesional.prototype=Object.create(Person.prototype);
+
 ```
 
 ## OOP with Prototype Pattern
@@ -173,42 +222,47 @@ To wrap it all up we can use **object litarals** and use the **Prototype pattern
    Then we call the `init` function inharited from `Person`.
 
 ```
+
 const Person={
-    init:function(first_name,last_name){
-        this.first_name=first_name;
-        this.last_name=last_name;
-        return this;
-    }
-    full_name:function(){
-        return `$(this.first_name) $(this.last_name)`
-    }
+init:function(first_name,last_name){
+this.first_name=first_name;
+this.last_name=last_name;
+return this;
+}
+full_name:function(){
+return `$(this.first_name) $(this.last_name)`
+}
 const Bob=Object.create(Person);
 Bob.init("Bob","Black");
 }
+
 ```
 
 The second way to initialize the `Bob` object is to pass a second parameter to the `Object.create()` function. The second parameter is the object that **describes** the `Bob` instance.
 
 ```
+
 const Person={
-    full_name:function(){
-        return `$(this.first_name) $(this.last_name)`
-    }
+full_name:function(){
+return `$(this.first_name) $(this.last_name)`
+}
 const Bob=Object.create(Person,{
-    first_name:{value:'Bob'},
-    last_name:{value:'Black'}
+first_name:{value:'Bob'},
+last_name:{value:'Black'}
 });
 }
+
 ```
 
 The third way to create and initialize a new `Person` instance is by defining a constructor factory function, that returns an object, and callng it.
 
 ```
+
 function PersonFactory(){
-    const person=Object.create(Person);
-    person.first_name=first_name;
-    person.last_name=last_name;
-    return person;
+const person=Object.create(Person);
+person.first_name=first_name;
+person.last_name=last_name;
+return person;
 }
 const Bob=PersoFactory("Bob","Black");
 
@@ -225,9 +279,10 @@ A class is a blue-print for creating an object. We instanciate the class using t
 > 5.  The "setter" function is being called on **reasigning** a new value to the name of the function, as if it was a property `object.firstName="newName"`.
 
 ```
+
 class Person{
-    _classParamOne="";
-    _classParamTwo="";
+\_classParamOne="";
+\_classParamTwo="";
 
     constructor(firstName,lastName){
         this._firstName=firstName;
@@ -255,6 +310,7 @@ class Person{
     greating(){
         return `Hello! I am ${this._firstName}`;
     }
+
 }
 const Bob=new Person('Bob','Black');
 Bob.lastname;
@@ -262,6 +318,7 @@ Bob.firstName;
 Bob.firstName="";
 Bob.firstName="Boby";
 Bob.greating();
+
 ```
 
 ### Inharitance
@@ -269,13 +326,14 @@ Bob.greating();
 The `Student` class inharits from the `Person` class, with a construcctor function calling the `super()` function (that calls the Person constructor), only then adding new properties to the Studant class
 
 ```
+
 class Student extends Person{
 constructor (firstName,lastName,course){
-    super(firstName,lastName);
-    this.course=course;
+super(firstName,lastName);
+this.course=course;
 }
 greating(){
-    return `${super.greating()} I study ${this.course}`
+return `${super.greating()} I study ${this.course}`
 }
 }
 
@@ -285,6 +343,8 @@ Alice.lastName;
 Alice.firstName="Alicia";
 Alice.fullName;
 Alice.greating();
+
 ```
 
 **Remember!** this is ES6 terminology, a sinthetic suger for the prototype and constructor patterns, so you could use the `class` syntax to extend objects that were defined using prototype and constructor patterns.
+```
