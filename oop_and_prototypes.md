@@ -1,5 +1,13 @@
 # Java Script OOp and Prototypes
 
+## Some Concepts
+
+1. **Object literal**: `{a:"hi",b:123}`
+2. **Object destructuring**: `{a,b}={a:"hi",b:123}`
+   here the variables (a and b) must match the keys that are destructed.
+   so here:
+   `{f,x}={a:"hi",b:123}` f and x will be undefined.
+
 ## Get the type of a variable
 
 Rather than using typof operator, it is a good idea to use the Object.constructor.name property that will return the specific name of the variable constructor.
