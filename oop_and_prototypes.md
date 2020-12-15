@@ -1,4 +1,4 @@
-# Java Script OOp and Prototypes
+# Java Script OOP and Prototypes
 
 ## Some Concepts
 
@@ -30,10 +30,37 @@
    ```
    as seen the key-value pairs of the third argument are overriding similar keys in the second argument.
 
-```
 ## Get the type of a variable
 
-Rather than using typof operator, it is a good idea to use the Object.constructor.name property that will return the specific name of the variable constructor.
+1. Rather than using `typeof` operator, it is a good idea to use the Object.constructor.name property that will return the specific name of the variable constructor.
+   But, the `contructor` property is not the objects direct property:
+
+```
+myObj.hasOwnProperty('constructor')// returns false
+```
+
+This is because the `contructor` property is the direct property of the Object class:
+
+```
+obj.__proto__.hasOwnProperty('constructor')// this returns true
+```
+
+2. Another way is using the `toString()` method:
+
+   ```
+   Object.prototype.toString.call([])//returns [object Array]
+   ```
+
+   If we try use the `toString()` directly it will print out all the arrays content:
+
+   ```
+   const arr=[ 'dfgd', 34 ]
+   arr.toString() //returns 'dfgd,34'
+   ```
+
+## Object inherited Properties from "Object" class:
+
+1. property enumerable: If we use the "for..in" loop on the object, will this specified property is enumerable (means the the loop will iterate on it) and is the object's own property?
 
 ## constructor function
 
@@ -93,7 +120,7 @@ dude.fullName();
 
 ```
 
-But, in this method, we have the word "this" reffering to the instance the function is called upon. And, as this function is created/copied on every new instance creation, we can just put it on the **_prototype_ of the function constructor** (the function prototype):
+But, in this method, we have the word "this" referring to the instance the function is called upon. And, as this function is created/copied on every new instance creation, we can just put it on the **_prototype_ of the function constructor** (the function prototype):
 The function "Person", has a "Prototype" (and a **_proto_**) attribute that is pointing to Persons prototype.
 When we use the "new" key word in `new Person("first","last")` the new instance will point to that same prorotype with its **_proto_**
 attribute.
@@ -116,7 +143,7 @@ dude.fullName();
 
 ## OOP Closure
 
-If we would like to define a function reffering to a **private** attributes, we can define the function like so:
+If we would like to define a function referring to a **private** attributes, we can define the function like so:
 
 ```
 
@@ -208,7 +235,7 @@ But, to link the two constructors together we need to define `Person` as the **p
 
 ```
 
-Profesional.prototype=Object.create(Person.prototype);
+Professional.prototype=Object.create(Person.prototype);
 
 ```
 
@@ -265,6 +292,26 @@ person.last_name=last_name;
 return person;
 }
 const Bob=PersoFactory("Bob","Black");
+
+```
+
+## JavaScript OOP the 'Old' way
+
+```
+//Person constructor function
+const Person=function(firstName,lastName,age){
+    this.firstName=firstName;
+    this.lastName=lastName;
+    this.age=age
+}
+Person.prototype={
+    fullName(){
+        return `${this.firstName} ${this.lastName}`}
+    }
+const Boby=new Person('Boby','Brown',34)
+console.log(Boby)
+//returns Person { firstName: 'Boby', lastName: 'Brown', age: 34 }
+console.log(Boby.fullName)// returns 'Boby Brown'
 
 ```
 
@@ -347,4 +394,7 @@ Alice.greating();
 ```
 
 **Remember!** this is ES6 terminology, a sinthetic suger for the prototype and constructor patterns, so you could use the `class` syntax to extend objects that were defined using prototype and constructor patterns.
+
+```
+
 ```
