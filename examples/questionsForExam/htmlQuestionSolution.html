@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style></style>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>My To-Do Lists</h1>
+    <div class="to-do-lists">
+      <div class="list">
+        <h3>Shopping</h3>
+        <ul id="shopping-list">
+          <li>Apples</li>
+          <li>Tomatoes</li>
+          <li>Onions</li>
+          <li>Carrots</li>
+        </ul>
+        <label for="new-list-item">New list item:</label><br />
+        <input type="text" id="new-item" name="new-item" />
+        <button onclick="addListItem()">Add List Item</button>
+        <br />
+        <label for="remove-list-item">Remove list item:</label><br />
+        <input type="number" id="remove-item" name="remove-item" />
+        <button onclick="removeListItem()">Remove List Item</button>
+      </div>
+    </div>
+    <script>
+      const shoppingList = document.getElementById("shopping-list");
+      const allListItems = document.querySelectorAll("li");
+
+      const newinput = document.getElementById("new-item");
+      const removeinput = document.getElementById("remove-item");
+
+      newinput.addEventListener("input", setInputValue);
+      removeinput.addEventListener("change", setInputValue);
+      let inputValue = { text: null, removeItem: null };
+
+      function setInputValue(event) {
+        console.log(inputValue);
+        inputValue.removeItem = event.target.value;
+      }
+      function addListItem(event) {
+        const newListeItem = document.createElement("li");
+        newListeItem.innerText = inputValue.text;
+        shoppingList.appendChild(newListeItem);
+      }
+      function removeListItem(event) {
+        const listItem = Number(inputValue.removeItem);
+        if (listItem <= allListItems.length) {
+          shoppingList.removeChild(allListItems[listItem - 1]);
+        }
+      }
+    </script>
+  </body>
+</html>

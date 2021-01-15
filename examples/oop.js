@@ -20,3 +20,9 @@ console.log(Boby.fullName);
 
 const descriptor = Object.getOwnPropertyDescriptor(Boby, "firstName");
 console.log(descriptor);
+
+const list = ["a", "b", "c", "d"];
+do {
+  console.log(i);
+  i++;
+} while (i > list.length);

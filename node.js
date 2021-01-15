@@ -13,7 +13,7 @@ module.exports = {
 
 const second = require("./second");
 console.log("in mainjs file");
-second.log; ////this is not being executed becouse its returning undefined
+second.log; ////this is not being executed because its returning undefined
 
 /* in terminal:
 node main.js

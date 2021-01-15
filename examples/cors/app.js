@@ -13,3 +13,9 @@ app.get("/", cors(), (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+const list = ["a", "b", "c", "d"];
+do {
+  console.log(i);
+  i++;
+} while (i > list.length);
