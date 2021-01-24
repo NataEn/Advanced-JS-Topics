@@ -1,3 +1,5 @@
+console.log(aa);
+let aa = 123;
 console.log(printName1("max"));
 /*
 All next calls will return a ReferenceError, since they are not yet defined

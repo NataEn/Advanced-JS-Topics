@@ -18,11 +18,16 @@
           <li>Carrots</li>
         </ul>
         <label for="new-list-item">New list item:</label><br />
-        <input type="text" id="new-item" name="new-item" />
+        <input type="text" id="new-item" name="new-item" data-type="new-item" />
         <button onclick="addListItem()">Add List Item</button>
         <br />
         <label for="remove-list-item">Remove list item:</label><br />
-        <input type="number" id="remove-item" name="remove-item" />
+        <input
+          type="number"
+          id="remove-item"
+          name="remove-item"
+          data-type="remove-item"
+        />
         <button onclick="removeListItem()">Remove List Item</button>
       </div>
     </div>
@@ -35,23 +40,31 @@
 
       newinput.addEventListener("input", setInputValue);
       removeinput.addEventListener("change", setInputValue);
-      let inputValue = { text: null, removeItem: null };
+      const inputValue = { newItem: null, removeItem: null };
 
       function setInputValue(event) {
-        console.log(inputValue);
-        inputValue.removeItem = event.target.value;
+        const dataType = event.target.dataset.type;
+        if (dataType === "new-item") {
+          inputValue.newItem = event.target.value;
+        } else if (dataType === "remove-item") {
+          inputValue.removeItem = event.target.value;
+        }
       }
-      function addListItem(event) {
-        const newListeItem = document.createElement("li");
-        newListeItem.innerText = inputValue.text;
-        shoppingList.appendChild(newListeItem);
+
+      function addListItem() {
+        const newListItem = document.createElement("li");
+        newListItem.innerText = inputValue.newItem;
+        shoppingList.appendChild(newListItem);
+        newinput.value = null;
       }
       function removeListItem(event) {
         const listItem = Number(inputValue.removeItem);
         if (listItem <= allListItems.length) {
           shoppingList.removeChild(allListItems[listItem - 1]);
+          removeinput.value = null;
         }
       }
     </script>
+    <script src="./javascript.js"></script>
   </body>
 </html>
