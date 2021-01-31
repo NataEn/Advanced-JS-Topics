@@ -40,3 +40,24 @@ read more on:
 ## screen sizes:
 
 In this site we can see the current popular screen size that is being used: https://gs.statcounter.com/screen-resolution-stats/all/israel
+
+We can also see some github repositories on it:
+
+https://gist.github.com/gokulkrishh/242e68d1ee94ad05f488
+
+We can use th "rem" unit for responsiveness:
+we can change the html font size and use it as a ground unite:
+
+```
+html{
+    font-size:10px;
+}
+@media screen and (max-width:800px){
+    html{
+        font-size:15px;
+    }
+}
+```
+
+all height and widths and font sizes set relatively to the rem and change the font size only.
+Now in screens bigger then 800px all those elements stiled with rem will change accordingly.
