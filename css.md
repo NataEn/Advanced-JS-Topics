@@ -36,3 +36,7 @@ read more on:
    and
    https://www.ietf.org/rfc/rfc2397.txt
 3. https://stackoverflow.com/questions/26867893/converting-and-rendering-web-fonts-to-base64-keep-original-look
+
+## screen sizes:
+
+In this site we can see the current popular screen size that is being used: https://gs.statcounter.com/screen-resolution-stats/all/israel
