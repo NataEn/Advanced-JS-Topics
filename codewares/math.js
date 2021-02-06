@@ -9,3 +9,5 @@
 function getDecimal(n) {
   return n; // fix me
 }
+
+function sum(digits) {}

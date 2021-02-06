@@ -44,6 +44,8 @@ In this site we can see the current popular screen size that is being used: http
 We can also see some github repositories on it:
 
 https://gist.github.com/gokulkrishh/242e68d1ee94ad05f488
+and in:
+https://gist.github.com/gokulkrishh/242e68d1ee94ad05f488
 
 We can use th "rem" unit for responsiveness:
 we can change the html font size and use it as a ground unite:
@@ -61,3 +63,12 @@ html{
 
 all height and widths and font sizes set relatively to the rem and change the font size only.
 Now in screens bigger then 800px all those elements stiled with rem will change accordingly.
+
+we can also set the font size to 62.5% that is 10px if the default font-size is 16 px.
+
+**Remember that em is the size that is inherited from the parent div**
+Both "em" and "rem" are references to the font-size
+
+# Flex box
+
+The flex alignment is set on the parent container, it's children are flex-aligned, they behave like inline blocks
