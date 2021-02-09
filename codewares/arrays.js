@@ -140,3 +140,28 @@ console.log(
     ]
   )
 );
+//get average of numbers in an array
+function getAverage(marks) {
+  //TODO : calculate the downwar rounded average of the marks array
+  const sum = marks.reduce((reducer, accu) => reducer + accu, 0);
+  return parseInt(sum / marks.length);
+}
+//sorting array with mixed numbers and strings:
+function dbSort(a) {
+  let numbers = [];
+  let strings = [];
+  for (let item of a) {
+    if (typeof item === "string") {
+      strings.push(item);
+    }
+    if (typeof item === "number") {
+      numbers.push(item);
+    }
+  }
+  return [
+    ...numbers.sort((a, b) => {
+      return a - b;
+    }),
+    ...strings.sort(),
+  ];
+}
