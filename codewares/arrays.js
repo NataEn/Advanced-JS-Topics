@@ -1,7 +1,5 @@
 // There is an array with some numbers. All numbers are equal except for one. Try to find it!
 
-const { trueDependencies } = require("mathjs");
-
 // findUniq([ 1, 1, 1, 2, 1, 1 ]) === 2
 // findUniq([ 0, 0, 0.55, 0, 0 ]) === 0.55
 // It’s guaranteed that array contains at least 3 numbers.
@@ -165,3 +163,16 @@ function dbSort(a) {
     ...strings.sort(),
   ];
 }
+//pear
+function bears(x, s) {
+  let mating_bears = "",
+    pear;
+  // gives the same solution: s.match(/B8|8B/g);
+  const regex = RegExp("8B|B8", "g");
+  while ((pear = regex.exec(s)) !== null) {
+    mating_bears += pear;
+  }
+
+  return [mating_bears, mating_bears.length / 2 >= x];
+}
+console.log(bears(10, "8888a8k8B8cB8bm8BB8fB8jBB8"));
