@@ -4,6 +4,7 @@ function countLetters(arr) {
   console.log(totalWords);
   const lettersObj = {};
   for (let i = 0; i < totalWords.length - 1; i++) {
+      //if...
     lettersObj[totalWords[i]] = 0;
     lettersObj[totalWords[i]] += 1;
   }
