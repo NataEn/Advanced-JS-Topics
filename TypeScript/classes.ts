@@ -31,7 +31,7 @@ class Car {
 
 // Instantiate (create) an object from a class
 
-let car = new Car(5);
+const car = new Car(5);
 car.accelerate();
 car.getSpeed();
 

@@ -9,7 +9,7 @@ let myString: string;
 // myString = 'This is a string';
 
 // Try to assign a number to a string => Error
-myString = 4;
+// myString = 4;
 
 // TypeScript can also infer types
 
