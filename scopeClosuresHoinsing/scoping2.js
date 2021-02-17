@@ -51,6 +51,7 @@ const tested = test();
 const testedThis = this;
 console.log(testedThis);
 
+//closure without setTimeout func
 function myFunc() {
   let i;
   const funcs = [];
@@ -61,7 +62,6 @@ function myFunc() {
     };
 
     funcs.push(log);
-    //setTimeout(log, 100);
   }
   return funcs;
 }
