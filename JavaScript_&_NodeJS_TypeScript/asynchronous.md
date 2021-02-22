@@ -397,3 +397,7 @@ When the promise rejected, an error is thrown so the value gets passed to the `c
 Though blocking code is easier to read and reason but it can take mutch more time to happen, since we are waiting for the promise to resolve.
 
 `Async-await` may be bad for performance.
+
+### Read more:
+
+1. Promises: https://radiant-brushlands-42789.herokuapp.com/medium.com/better-programming/is-javascript-synchronous-or-asynchronous-what-the-hell-is-a-promise-7aa9dd8f3bfb
