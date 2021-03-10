@@ -65,9 +65,9 @@ f();
   });
 
   async function awaitTiming() {
-    console.log("before await");
+   
     await promise;
-    console.log("after await");
+    
   }
 
   awaitTiming();
@@ -125,7 +125,7 @@ console.log(p1.y); // 6
 //call bind apply
 const Bob = {
   firstName: "Bob",
-  lastName: "Cohen",
+  lastName: "Dillen",
   getFullName() {
     return `${this.firstName}  ${this.lastName}`;
   },
