@@ -1,0 +1,15 @@
+.main:hover {
+  background-color: blueviolet;
+}
+.divExm {
+  background-color: green;
+}
+.spanExm {
+  background-color: blue;
+}
+.pseudoElement::first-letter {
+  color: red;
+}
+.pseudoElement::first-line {
+  color: goldenrod;
+}
