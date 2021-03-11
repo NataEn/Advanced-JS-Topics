@@ -1,0 +1,3 @@
+## NodeJS
+The event loop is what allows Node.js to perform non-blocking I/O operations despite the fact that JavaScript is single-threaded.
+The loop, which runs on the same thread as the JavaScript code, grabs a task from the code and executes it. If the task is async or an I/O operation the loop offloads it to the system kernel, like in the case for new connections to the server, or to a thread pool, like file system related operations. The loop then grabs the next task and executes it.

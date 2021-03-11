@@ -1,0 +1,6 @@
+1) keywoard and named arguments in JS
+In JS, when invoking a function, the arguments should be added in their defined order:
+func()
+{//some code goes here}
+in order to send the arguments to the function not in an ordered way, then send the function an object, when the object is recieved,
+the object content will be desructered in another object;
