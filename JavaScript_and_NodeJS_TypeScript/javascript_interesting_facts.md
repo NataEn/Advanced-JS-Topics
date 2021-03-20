@@ -50,3 +50,11 @@ const fun=function(){
 ```
 
 2. when we declare a function (`function functionName(){}`) it is being hoisted up to the upper part of the code so we can technically write its execution call before we declare it.
+
+## The $ sign
+
+read on :
+
+1. https://www.thoughtco.com/and-in-javascript-2037515#:~:text=The%20dollar%20sign%20(%24)%20and,properties%2C%20events%2C%20and%20objects.
+2. https://osric.com/chris/accidental-developer/2008/04/the-javascript-dollar-sign-function/
+3. https://www.youtube.com/watch?v=Acm-MD_6934

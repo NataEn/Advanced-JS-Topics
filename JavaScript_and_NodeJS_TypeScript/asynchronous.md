@@ -398,6 +398,10 @@ Though blocking code is easier to read and reason but it can take mutch more tim
 
 `Async-await` may be bad for performance.
 
+## multiple or single try-catch
+
+https://stackoverflow.com/questions/4555322/multiple-or-single-try-catch/4555448
+
 ### Read more:
 
 1. Promises: https://radiant-brushlands-42789.herokuapp.com/medium.com/better-programming/is-javascript-synchronous-or-asynchronous-what-the-hell-is-a-promise-7aa9dd8f3bfb
