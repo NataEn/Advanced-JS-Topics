@@ -3,17 +3,21 @@ import "./App.css";
 import { fetchData, axiosFetchData } from "./dal/fetchData";
 import Recipe from "./components/Recipe/Recipe.component";
 import Spinner from "./components/Spinner/Spinner.component";
+import Search from "./components/Search/Search.component";
 
 export default class App extends Component {
   state = {
     isLoaded: false,
     error: null,
     recipes: [],
-    searchIngredient: "chicken",
   };
-  async componentDidMount() {
+
+  componentDidMount() {
+    this.handelFetchData("chicken");
+  }
+  async handelFetchData(searchIngredient) {
     try {
-      const recipes = await fetchData(this.state.searchIngredient);
+      const recipes = await fetchData(searchIngredient);
       this.setState({
         isLoaded: true,
         error: null,
@@ -23,7 +27,7 @@ export default class App extends Component {
       this.setState({ isLoaded: true, error: err, recipes: [] });
     }
   }
-  handelFetchData() {
+  handelLoadData() {
     const recipes = this.state.recipes;
     if (!this.state.isLoaded) {
       return <Spinner />;
@@ -48,15 +52,13 @@ export default class App extends Component {
     return (
       <div className="App">
         <h1>My Recipes</h1>
-        {/* <input
-          onKeyPress={(event) => {
-            if (event.key === "Enter") {
-              console.log(event.currentTarget.value);
-              this.setState({ searchIngredient: event.currentTarget.value });
-            }
+        <Search
+          onSearch={(searchTerm) => {
+            console.log(searchTerm);
+            this.handelFetchData(searchTerm);
           }}
-        /> */}
-        <div className="recipes-container">{this.handelFetchData()}</div>
+        />
+        <div className="recipes-container">{this.handelLoadData()}</div>
       </div>
     );
   }

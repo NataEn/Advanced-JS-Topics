@@ -6,6 +6,7 @@ const REQUEST_PARAMS = {
 };
 
 const fetchData = (searchParam) => {
+  console.log(searchParam);
   return fetch(
     `${BASE_URL}?q=${searchParam}&app_id=${REQUEST_PARAMS.app_id}&app_key=${REQUEST_PARAMS.app_key}`
   )
@@ -18,6 +19,7 @@ const fetchData = (searchParam) => {
     });
 };
 const axiosFetchData = async (searchParam) => {
+  console.log(searchParam);
   return await axios
     .get(BASE_URL, {
       params: Object.assign(REQUEST_PARAMS, { q: searchParam }),
