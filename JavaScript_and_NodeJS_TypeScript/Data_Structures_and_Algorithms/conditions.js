@@ -1,4 +1,5 @@
 //return number of days in an input month number
+
 //solution no 1: expected solution
 //even month=30 days except for february=28
 //not even month=31 days
@@ -69,3 +70,31 @@ if (monthNum >= 1 && monthNum <= 12) {
   const days = Math.round((nextDate - date) / millisecondsInADay);
   console.log(days);
 }
+
+/**Conditions (if/else) Exercises
+1. Write a program to check whether a number is negative, positive or zero.
+2. Write a program to check whether a number is divisible by 5 and 11 or not.-->check if num%55===0
+3. Write a program to check whether a number is even or odd.
+4. Write a program to check whether a year is leap year or not.
+5. Write a program to check whether a character is alphabet or not.
+6. Write a program to input any alphabet and check whether it is vowel or consonant.
+7. Write a program to input any character and check whether it is alphabet, digit or special
+character.
+8. Write a program to check whether a character is uppercase or lowercase alphabet-->regex?
+9. Write a program to input week number and print week day.?
+10. Write a program to input month number and print number of days in that month.
+
+12. Write a program to input angles of a triangle and check whether triangle is valid or not.
+13. Write a program to input all sides of a triangle and check whether triangle is valid or not.
+14. Write a program to check whether the triangle is equilateral, isosceles or scalene
+triangle.
+15. Write a program to find all roots of a quadratic equation.
+16. Write a program to calculate profit or loss.
+17. Write a program to input electricity unit charges and calculate total electricity bill
+according to the given condition:
+○ For first 50 units $0.50/unit
+○ For next 100 units $0.75/unit
+○ For next 100 units $1.20/unit
+○ For unit above 250 $1.50/unit
+○ An additional surcharge of 20% is added to the bill
+ */
