@@ -81,4 +81,27 @@ function mapCountries(countries) {
   return countriesMap;
 }
 
-//q3-
+//q3-question about "this"
+function Country() {}
+
+//open question-1:
+// a-implement array.map
+
+const myArray = [1, 2, 3, 4];
+function myMapFunction(arr, cb) {
+  //implement code here
+}
+myMapFunction(myArray, callbackFunction);
+//b-use implemented function for combining two arrays:
+const myGroceries = [
+  { name: "Apple", price: 10 },
+  { name: "Tomato", price: 4.5 },
+  { name: "Onion", price: "2.5" },
+  { name: "Strawberry", price: 15 },
+];
+const groceriesImages = [
+  "Apple.png",
+  "Onion.png",
+  "Strawberry.png",
+  "Tomato.png",
+];
