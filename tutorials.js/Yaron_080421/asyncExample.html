@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <h3>My list</h3>
+      <ul></ul>
+    </div>
+    <script>
+      console.log("start of code");
+      const container = document.querySelector("div");
+      const list = document.querySelector("ul");
+
+      //this object is taken from another file or external server
+      const items = [
+        { name: "Tomatoes", amount: 3 },
+        { name: "Potatoes", amount: 10 },
+        { name: "Apples", amount: 30 },
+      ];
+
+      const fetchingPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          //this is the long process
+          items.forEach((item) => {
+            list.innerHTML += `<li>${item.name}:${item.amount}</li>`;
+          });
+          const error = false;
+          if (!error) {
+            resolve();
+          } else {
+            reject();
+          }
+        }, 5000);
+      });
+
+      function fetchMyList() {
+        return fetchingPromise;
+      }
+      function addContent() {
+        container.innerHTML += "<p>Remember to update the list!</p>";
+      }
+      //when just running the fetch
+      console.log(fetchMyList());
+
+      //when we need to schedule to get and use the data
+
+      fetchMyList()
+        .then(() => {
+          console.log("added list");
+          addContent();
+        })
+        .catch((err) => () => {
+          console.log("something went wrong");
+        });
+      console.log("end of code");
+    </script>
+  </body>
+</html>
