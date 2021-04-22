@@ -1,0 +1,191 @@
+<html>
+  <head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Karma"
+    />
+    <style>
+      * {
+        font-family: "Karma", sans-serif;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        text-align: center;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        margin: 0 auto;
+      }
+      .menu-item {
+        padding: 20px;
+      }
+
+      .main {
+        max-width: 1200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .top-menu {
+        max-width: 1200px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+      }
+      .menu {
+        display: none;
+        position: relative;
+        z-index: 2;
+        width: 40%;
+        height: 40vh;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+      .card {
+      }
+      .card p,
+      .card img {
+        width: 100%;
+        margin: 0.25rem;
+        border-radius: 0.25rem;
+      }
+    </style>
+    <style>
+      .card {
+        margin: 0.25rem;
+        display: flex;
+        flex-direction: column;
+        width: 20vw;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body cz-shortcut-listen="true">
+    <!-- Sidebar (hidden by default) -->
+    <nav class="menu" id="mySidebar">
+      <a onclick="close_menu()" class="menu-item">Close Menu</a>
+      <a href="#food" onclick="close_menu()" class="menu-item">Food</a>
+      <a href="#about" onclick="close_menu()" class="menu-itemn">About</a>
+    </nav>
+
+    <!-- Top menu -->
+    <div class="top-menu">
+      <div class="menu-item" onclick="open_menu()">☰</div>
+      <div class="menu-item">My Food</div>
+      <div class="menu-item">Mail</div>
+    </div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="main">
+      <div class="row">
+        <div class="card">
+          <img
+            src="https://www.w3schools.com/w3images/sandwich.jpg"
+            alt="Sandwich"
+          />
+          <h3>The Perfect Sandwich, A Real NYC Classic</h3>
+          <p>
+            Just some random text, lorem ipsum text praesent tincidunt ipsum
+            lipsum.
+          </p>
+        </div>
+        <div class="card">
+          <img src="https://www.w3schools.com/w3images/steak.jpg" alt="Steak" />
+          <h3>Let Me Tell You About This Steak</h3>
+          <p>
+            Once again, some random text to lorem lorem lorem lorem ipsum text
+            praesent tincidunt ipsum lipsum.
+          </p>
+        </div>
+        <div class="card">
+          <img
+            src="https://www.w3schools.com/w3images/cherries.jpg"
+            alt="Cherries"
+          />
+          <h3>Cherries, interrupted</h3>
+          <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+          <p>What else?</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://www.w3schools.com/w3images/wine.jpg"
+            alt="Pasta and Wine"
+          />
+          <h3>Once Again, Robust Wine and Vegetable Pasta</h3>
+          <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+        </div>
+      </div>
+
+      <!-- Second Photo Grid-->
+      <div class="row">
+        <div class="card">
+          <img
+            src="https://www.w3schools.com/w3images/popsicle.jpg"
+            alt="Popsicle"
+          />
+          <h3>All I Need Is a Popsicle</h3>
+          <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      //this is a recipes array containing all information about each of the cards content:
+      const recipes = [
+        {
+          imgUrl: "https://www.w3schools.com/w3images/salmon.jpg",
+          alt: "Salmon",
+          title: "Salmon For Your Skin",
+          content:
+            "Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.",
+        },
+        {
+          imgUrl: "https://www.w3schools.com/w3images/sandwich.jpg",
+          alt: "Sandwich",
+          title: "The Perfect Sandwich, A Real Classic",
+          content:
+            " Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum",
+        },
+        {
+          imgUrl: "https://www.w3schools.com/w3images/croissant.jpg",
+          alt: "Croissant",
+          title: "Le French",
+          content:
+            "Lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.",
+        },
+      ];
+      console.log(recipes);
+      // Script to open and close sidebar menu
+      function open_menu() {
+        document.getElementById("mySidebar").style.display = "block";
+      }
+
+      function close_menu() {
+        document.getElementById("mySidebar").style.display = "none";
+      }
+      function mapCardsInfoToDom() {
+        const secondRowElem = document.querySelectorAll(".row")[1];
+        recipes.map((recipe) => {
+          console.log(recipe);
+          secondRowElem.innerHTML += ` <div class="card">
+          <img
+            src="${recipe.imgUrl}"
+            alt="${recipe.alt}"
+          />
+          <h3>${recipe.title}</h3>
+          <p>${recipe.content}</p>
+        </div>`;
+        });
+      }
+      mapCardsInfoToDom();
+    </script>
+  </body>
+</html>

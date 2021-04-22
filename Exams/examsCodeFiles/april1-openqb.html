@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .container {
+        height: 100vh;
+      }
+      .popup {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        height: 100%;
+      }
+      .popup__call,
+      .popup__call-options {
+        margin: 1rem;
+        padding: 0.5rem;
+        background-color: yellow;
+        border: 1px solid black;
+        width: max-content;
+      }
+
+      ul {
+        text-decoration: none;
+      }
+      li {
+        margin: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="popup">
+        <div class="popup__call-options">
+          <h2>choose the department to call</h2>
+          <ul>
+            <li>
+              <span data-name="Customer Service">Customer Service</span
+              ><button onclick="callDepartment()">Call</button>
+            </li>
+            <li>
+              <span data-name="New Order">New Order</span
+              ><button onclick="callDepartment()">Call</button>
+            </li>
+            <li>
+              <span data-name="Delete Order">Delete Order</span
+              ><button onclick="callDepartment()">Call</button>
+            </li>
+            <li>
+              <span data-name="Website Support">Website Support</span
+              ><button onclick="callDepartment()">Call</button>
+            </li>
+          </ul>
+        </div>
+        <div class="popup__call">
+          <h2>Give Us a call</h2>
+          <button>Call Now</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const li = document.querySelectorAll("li");
+      function deviceCall(number) {
+        return `calling number ${number}...`;
+      }
+      function callDepartment() {}
+    </script>
+  </body>
+</html>

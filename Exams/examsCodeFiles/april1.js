@@ -82,7 +82,22 @@ function mapCountries(countries) {
 }
 
 //q3-question about "this"
-function Country() {}
+function City(name, population) {
+  this.name = name;
+  this.population = population;
+}
+const calgary = new City(countries[0][1].name, 1200000);
+const regina = new City(countries[0][2].name, 200000);
+console.log(calgary.population);
+calgary.decreesPopulation = function (percentage) {
+  this.population -= this.population * (percentage / 100);
+};
+calgary.decreesPopulation(10);
+console.log(calgary.population);
+console.log(regina.population);
+regina.decreesPopulation = calgary.decreesPopulation.bind(regina);
+regina.decreesPopulation();
+console.log(regina.population);
 
 //open question-1:
 // a-implement array.map
@@ -91,7 +106,7 @@ const myArray = [1, 2, 3, 4];
 function myMapFunction(arr, cb) {
   //implement code here
 }
-myMapFunction(myArray, callbackFunction);
+// myMapFunction(myArray, callbackFunction);
 //b-use implemented function for combining two arrays:
 const myGroceries = [
   { name: "Apple", price: 10 },
@@ -105,3 +120,26 @@ const groceriesImages = [
   "Strawberry.png",
   "Tomato.png",
 ];
+
+answer = 20;
+function myFunc(number) {
+  console.log(answer);
+  var answer = number++;
+  return answer;
+}
+console.log(myFunc(3));
+
+//q-8: what each function return
+
+function foo1() {
+  return {
+    bar: "hello",
+  };
+}
+
+function foo2() {
+  return;
+  {
+    bar: "hello";
+  }
+}
