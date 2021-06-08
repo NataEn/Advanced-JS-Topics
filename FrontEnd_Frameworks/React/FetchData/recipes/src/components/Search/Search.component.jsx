@@ -8,9 +8,9 @@ export default function Search({ onSearch }) {
     }
   };
   return (
-    <div className="search-form">
+    <form className="search-form">
       <label>Search Ingredient </label>
       <input htmlFor="search" id="search" onKeyPress={handleSearch} />
-    </div>
+    </form>
   );
 }

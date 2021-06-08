@@ -60,7 +60,7 @@ let message="Callback Called";
 
 ### Callback Hell
 
-Happends when we are calling a nother function to state that the async-function is complete.
+Happens when we are calling another function to state that the async-function is complete.
 And add another function inside the callback that will run when all code inside the callback is done.
 
 In an async manner:
@@ -96,14 +96,16 @@ function doAsyncTask(){
    let message="Promise Resolved";
 ```
 
-Though the message is defined after the promise, it is still printing it out, becouse it is in fact asynchronouse.
+Though the message is defined after the promise, it is still printing it out, because it is in fact asynchronouse.
 
 `doAsyncTask()` is called, returns a promise that is attached a `then` handeler. `Promise.resolve()` creates another task and calls the `resolve()`, then the inner then function gets called, and by that time `message` is already available in memory.
 
-When creating a new Promise object, it takes an anonimuse function that accepts two **function agruments**: resolve, reject. The code inside the anonimouse function will be executed asynchromously. After this code is done runing,one of the two **function agruments** will be executed.
+When creating a new Promise object, it takes an anonymise function that accepts two **function agruments**: resolve, reject. The code inside the anonimouse function will be executed asynchromously. After this code is done runing,one of the two **function agruments** will be executed.
 
 ```
-const promise=new Promise((resolve,reject)=>{})
+const promise=new Promise((resolve,reject)=>{
+    //asynchronous process here
+})
 ```
 
 Usually we return a promise
@@ -119,7 +121,7 @@ function doAsyncTask(){
 doAsyncWork();
 ```
 
-When the `doAsyncWork()` runs it returns a promise. So, First the code insid the promise runs. print of "Async work complete" occures. Next the execution of the `resolve()` follows. The Promise object has a function called `then()` it is a success handeler that if the promise resolved it will call the anonimouse function inside the `then()`.
+When the `doAsyncWork()` runs it returns a promise. So, First the code inside the promise runs. print of "Async work complete" occures. Next the execution of the `resolve()` follows. The Promise object has a function called `then()` it is a success handeler that if the promise resolved it will call the anonimouse function inside the `then()`.
 
 ```
 doAsyncWork().then(()=>console.log("Task Complete"));
