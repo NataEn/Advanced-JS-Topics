@@ -17,11 +17,17 @@
    Module->config->routes:-view-{$scope}-controller-
 6. Factories and services- are singletons= isolated from other code and can be reused
 
+## Angular JS notes
+
+1. a misspelled data-binding expression will often not lead to an error.
+2. understanding assets loading in app: first the html is loaded- the expressions, the {{}}, are evaluated as is only then the angular engin is replaces them with the resolved expression. This is why if they point to a resource, for instance a `src` attribute in an img tag then this will lead first to an 404 error then after it will be avaluated the img will be shown--> solution use `ng-` expressions. For img tags it will be `ng-src`
+
 #### read and practice more on:
 
 1. https://www.djamware.com/post/5a0673c880aca7739224ee21/mean-stack-angular-5-crud-web-application-example
 2. https://www.positronx.io/angular-7-reactive-forms-validation-tutorial/
 3. https://www.positronx.io/mean-stack-tutorial-angular-7-crud-bootstrap/
+4. angularJS tutorials- https://www.youtube.com/watch?v=mW25S2tiCOM
 
 Continue my practice on:
 https://stackblitz.com/edit/angular-dog59u?file=src%2Fapp%2Fproduct-list%2Fproduct-list.component.html
