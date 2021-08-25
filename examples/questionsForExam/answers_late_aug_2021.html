@@ -4,29 +4,109 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #container {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        width: max-content;
+      }
+      #buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+      .reverse,
+      .pause {
+        width: max-content;
+      }
+    </style>
     <title>Document</title>
   </head>
   <body>
-    <!--
+    <div id="container">
+      <img name="slide" width="400" height="200" />
+      <div id="buttons">
+        <button class="reverse" onclick="reverse()">Reverse</button>
+        <button class="pause" onclick="togglePause()">Pause</button>
+      </div>
+    </div>
+
+    <!-- 
 question 1 code
     -->
-    <ul>
+    <!-- <ul>
       <li id="fname1">List item 1</li>
       <li>List item 2</li>
-    </ul>
+    </ul> -->
+
     <script>
       /** question 1
-       * what is the console output for this code?
-       *
-       *
-       */
-      let logDoc = () =>
-        console.log(document.getElementById("fname1").nodeName);
-      let numbers = [1, 2, 4, 7, 3, 5, 6];
-      let bazz = numbers.filter((number) => number % 2);
-      a = logDoc();
-      console.log(a);
-      console.log(bazz(numbers));
+                     * what is the console output for this code?
+                     *
+                     *
+
+                    let logDoc = () =>
+                      console.log(document.getElementById("fname1").nodeName);
+                    let numbers = [1, 2, 4, 7, 3, 5, 6];
+                    let bazz = numbers.filter((number) => number % 2);
+                    a = logDoc();
+                    console.log(a);
+                    console.log(bazz(numbers));
+                    */
+
+      //question 2
+      /**
+                  let languages = ["React", "Angular", "Vanilla JS"];
+                  console.log(languages);
+                  x = languages.push("AJAX");
+                  let foo = languages.splice(1, 1, "jquery", "Vue");
+                  console.log(x);
+                  let y = foo.slice(0, 1);
+                  console.log(foo);
+                  console.log(y);
+                  let bazz = languages.join("");
+                  let answer = bazz.indexOf("ng");
+                  console.log(answer);
+            */
+      let i = 0;
+      let images = []; //can use let as well
+      const time = 2000;
+      let timeOutId;
+      let nextStatus = "Pause";
+      const pauseBtn = document.querySelector(".pause");
+      images[0] = "./images/image1.jpg";
+      images[1] = "./images/image2.jpg";
+      images[2] = "./images/image3.jpg";
+      images[3] = "./images/image4.jpg";
+
+      switchImg = () => {
+        document.slide.src = images[i];
+        if (i < images.length - 1) {
+          i++;
+        } else {
+          i = 0;
+        }
+        timeOutId = setTimeout("switchImg()", time);
+      };
+
+      const reverse = () => {
+        images = images.reverse();
+        console.log(images);
+      };
+      const togglePause = () => {
+        if (nextStatus === "Pause") {
+          console.log("clicked to pause");
+          clearTimeout(timeOutId);
+          pauseBtn.innerText = "Play";
+          nextStatus = "Play";
+        } else {
+          console.log("clicked to play");
+          switchImg();
+          pauseBtn.innerText = "Pause";
+          nextStatus = "Pause";
+        }
+      };
+      window.onload = switchImg;
     </script>
   </body>
 </html>
