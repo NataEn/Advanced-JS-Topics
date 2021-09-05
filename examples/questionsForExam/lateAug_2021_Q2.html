@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .top {
+        position: fixed;
+        top: 10px;
+      }
+      .bar {
+        width: 100%;
+      }
+      .btn,
+      .button {
+        border: none;
+        display: inline-block;
+        padding: 8px 16px;
+        vertical-align: middle;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        background-color: inherit;
+        text-align: center;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 48px;
+        padding: 8px 16px;
+        max-width: 980px;
+        width: 100vw;
+      }
+      .btn,
+      .button {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        white-space: normal;
+      }
+      .bar,
+      .bar-item {
+        padding: 8px 16px;
+        width: auto;
+        border: none;
+        display: inline-block;
+        outline: 0;
+      }
+      .bar-item:hover {
+        background-color: lightgray;
+      }
+
+      .content img {
+        background-color: lawngreen;
+        width: 100px;
+        height: 150px;
+        padding: 2%;
+        margin: 0.7% 0;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="top bar">
+      <a href="#home" class="bar-item button">Home</a>
+      <a href="#about" class="bar-item button">About</a>
+      <a href="#members" class="bar-item button">Members</a>
+      <a href="#contact" class="bar-item button">Contact</a>
+    </nav>
+    <!--sibling to nav, parent to child h1 and img elements-->
+    <div id="home" class="content">
+      <h1>My Site!</h1>
+      <!-- child of upper div, sibling to other inside imgs-->
+      <img src="./images/image1.jpg" alt="number 1" />
+      <img src="./images/image2.jpg" alt="number 2" />
+      <img src="./images/image3.jpg" alt="number 3" />
+    </div>
+    <div id="About" class="content"></div>
+    <div id="Members" class="content"></div>
+    <div id="Contact" class="content">
+      <form>
+        <input type="text" name="name" placeholder="Enter Username" />
+        <input type="email" name="email" placeholder="Enter email" />
+        <textarea placeholder="tell me about yourself" name="tellme"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
